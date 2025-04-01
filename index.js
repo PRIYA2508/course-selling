@@ -27,7 +27,7 @@ app.post("/user/purchase" ,(req,res)=>{
 
 app.get("/courses",(req,res)=>{
     res.json({
-
+    message: "our purchased courses"
     })
 })
  
