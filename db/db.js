@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema
-const ObjectID = Schema.ObjectId;
+const ObjectId = Schema.ObjectId;
+mongoose.connect("mongodb+srv://siserjuliet31:Showpassword@cluster0.sqijbpl.mongodb.net/coursera-app")
 
 const userSchema = new Schema({
 email: {type: String , unique:true},
@@ -21,13 +22,13 @@ title:String,
 description:String,
 price:Number,
 imageUrl: String,
-creatorId: ObjectID
+creatorId: ObjectId
 })
 
 const purchaseSchema = new Schema({
 title:String,
-userId:ObjectID,
-courseId:ObjectID,
+userId:ObjectId,
+courseId:ObjectId,
 price:Number,
 description:String
 })
