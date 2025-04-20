@@ -1,10 +1,11 @@
+
 const {Router} = require("express");
-
 const adminRouter = Router();
-
 const {adminModel} = require("../db/db")
+const jwt = require("jsonwebtoken")
+const JWT_ADMIN_PASSWORD = "asyncpassword"
 
-adminRouter.post("/signin",async function(req,res){
+adminRouter.post("/signup",async function(req,res){
     const {firstName,lastName,email,password} = req.body;
    try{
     await adminModel.create({
@@ -15,7 +16,7 @@ adminRouter.post("/signin",async function(req,res){
 })
 
 res.json({
-    message: "Signin Successfully",
+    message: "Signup Successfully",
 })
 } catch(error){
     res.status(500).json({
@@ -26,7 +27,29 @@ res.json({
         
 })
 
-adminRouter.post("/signup",function(req,res){}
+adminRouter.post("/signin",async function(req,res){
+    const{email,password} = req.body;
+
+    const admin = await adminModel.findOne({
+        email,
+        password
+    })
+    if(admin){
+        const token = jwt.sign({
+            id: admin._id
+        },JWT_ADMIN_PASSWORD);
+
+        res.json({
+            token: token
+        })
+    }
+    else{
+        res.status(403).json({
+            message: "Incorrect Credentials"
+        })
+    }
+    
+}
 )
 
 adminRouter.post("/course",function(req,res){
