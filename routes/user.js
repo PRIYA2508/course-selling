@@ -1,7 +1,8 @@
 const {Router} = require("express");
-
 const userRouter = Router();
 const {userModel} = require("../db/db")
+const jwt = require("jsonwebtoken");
+const JWT_USER_PASSWORD = "userpassword";
 userRouter.post("/signup",async(req,res)=>{
     const {firstName,lastName,email,password} = req.body;
     try{await userModel.create({
@@ -20,10 +21,25 @@ catch(error){
     })
 }
 })
-userRouter.post("/signin",(req,res)=>{
-    res.json({
-        message:"User logged in successfully"
+userRouter.post("/signin",async(req,res)=>{
+    const {email,password} = req.body;
+
+    const user = await userModel.findOne({
+        email,
+        password
     })
+    if(user){
+        const token = jwt.sign({
+           id: user._id
+        },JWT_USER_PASSWORD) 
+        res.json({
+            token: token
+        })
+    }else{
+    res.json({
+        message:"Credentials are not valid"
+    })
+}
 })
 
 userRouter.post("n /purchases", function(req,res){
