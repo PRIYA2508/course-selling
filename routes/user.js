@@ -2,7 +2,8 @@ const {Router} = require("express");
 const userRouter = Router();
 const {userModel} = require("../db/db")
 const jwt = require("jsonwebtoken");
-const JWT_USER_PASSWORD = "userpassword";
+const {JWT_USER_PASSWORD} = require("../config")
+
 userRouter.post("/signup",async(req,res)=>{
     const {firstName,lastName,email,password} = req.body;
     try{await userModel.create({
