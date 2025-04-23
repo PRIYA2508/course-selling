@@ -1,6 +1,6 @@
 const {Router} = require("express");
 const userRouter = Router();
-const {userModel} = require("../db/db")
+const {userModel, purchaseModel} = require("../db/db")
 const jwt = require("jsonwebtoken");
 const {JWT_USER_PASSWORD} = require("../config")
 const {userMiddleware} = require("../middleware/user")
@@ -44,10 +44,8 @@ userRouter.post("/signin",async(req,res)=>{
 }
 })
 
-userRouter.post("n /purchases", function(req,res){
-    res.json({
-       message: "purchase history"
-    })
+userRouter.get("/purchases",userMiddleware,async function(req,res){
+    
 
 })
 
