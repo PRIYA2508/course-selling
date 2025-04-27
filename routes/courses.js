@@ -16,9 +16,9 @@ const courseRouter = Router()
     })
     
     courseRouter.get("/preview",async (req,res)=>{
-        const courses = await purchaseModel.find({});
+        const courses = await courseModel.find({});
         res.json({
-        courses
+         courses
         })
     })
       

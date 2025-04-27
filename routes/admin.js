@@ -88,14 +88,14 @@ const {price,title,description,courseId,imageUrl} = req.body;
     })
 })
 
-adminRouter.get("/course/all",async function(req,res){
+adminRouter.get("/course/all",adminMiddleware,async function(req,res){
 const adminId= req.adminId;
 const course = await courseModel.find({
     creatorId:adminId
 })
 res.json({
     message: "All courses are here",
-    course: course.Id
+    course
 })
 })
 

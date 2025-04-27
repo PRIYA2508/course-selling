@@ -55,7 +55,6 @@ userRouter.get("/purchases",userMiddleware,async function(req,res){
 
 })
 
-
 module.exports={
     userRouter: userRouter
 }
