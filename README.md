@@ -19,6 +19,9 @@
   4. Course purchase and enrollment (Student)
   5. Secure route protection with middleware.
 
+ #API Testing 
+ I used Postman for testing the Api. 
+
   
   
   
