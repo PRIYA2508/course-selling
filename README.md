@@ -12,6 +12,13 @@
   3.MongoDB
   4.JWT for Authentication
 
+#🚀 Features:-
+  1. User registration and login (JWT authentication)
+  2. Role-based access control (Instructor, Student)
+  3. Course creation and management (Instructor only)
+  4. Course purchase and enrollment (Student)
+  5. Secure route protection with middleware.
+
   
   
   
